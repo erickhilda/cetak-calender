@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme {
+  --font-sans: "DM Serif Text", sans-serif;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 1cm;
+  }
+
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Ensure each calendar starts on a new page */
+  .calendar-page {
+    page-break-after: always;
+  }
+}
+
+/* Custom font settings */
+@layer base {
+  html {
+    font-feature-settings:
+      "liga" 1,
+      "calt" 1; /* Enable ligatures */
+  }
+}
