@@ -13,6 +13,21 @@ const year = ref(2025);
 const currentMonth = ref(new Date().getMonth());
 const currentBackground = ref(0);
 
+const monthNames = [
+  "Januari",
+  "Februari",
+  "Maret",
+  "April",
+  "Mei",
+  "Juni",
+  "Juli",
+  "Agustus",
+  "September",
+  "Oktober",
+  "November",
+  "Desember",
+];
+
 const handlePrint = () => {
   window.print();
 };
@@ -66,7 +81,10 @@ useHead({
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-100">
+  <div class="min-h-screen bg-gray-100 print:relative">
+    <div class="print:block hidden text-center text-lg font-bold pt-4">
+      Kalender Bulan {{ monthNames[currentMonth] }} {{ year }}, Hari Libur Nasional Indonesia
+    </div>
     <div class="print:hidden bg-white border-b">
       <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center">
@@ -115,6 +133,9 @@ useHead({
           :background="backgrounds[currentBackground]"
         />
       </div>
+    </div>
+    <div class="print:block print:absolute left-6 bottom-6 hidden text-sm">
+      Sumber hari libur: api-harilibur.vercel.app | Dicetak dari cetak-tanggalan
     </div>
   </div>
 </template>
